@@ -1,0 +1,100 @@
+FORMAT: 1A
+HOST: http://maoanping.f3322.net:5901/api/v1/pub
+
+# devhub public API
+
+devhub is a simple API allowing consumers to view devbub and vote in them.
+
+## Users Collection [/users]
+
+### Create a New User [POST]
+
+You may create your own user using this action. It takes a JSON
+object containing a user.
+
++ Request (application/json)
+
+        {
+            "userName": "user name as unique name for login",
+            "userEmail":"user email for contact",
+            "loginTel":"user phone number for contact",
+            "password":"user password for login"
+        }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "rst": {
+                "id": 1,
+                "userName": "Tester",
+                "userEmail": "tester@163.com",
+                "loginTel": "18962188643",
+                "createDate": 1481447430000
+              },
+              "base_resp": {
+                "ret": 0, 
+                "err_msg": ""
+              }
+            }
+
+
+## Users Basic info Collection  [/users/{id}]
+
+### User basic info [GET]
+
+get a user basic info.
+
++ Request (application/json)
+
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "rst": {
+                "id": 1,
+                "userName": "Tester",
+                "userEmail": "tester@163.com",
+                "loginTel": "18962188643",
+                "createDate": 1481447430000
+              },
+              "base_resp": {
+                "ret": 0,
+                "err_msg": ""
+              }
+            }
+
+
+## Users Auth in Collection  [/users/auth/in]
+
+### User login [GET]
+
+Login user by user name and  password, it will generate a session current now.
+
++ Request (application/json)
+
+        {
+            "userName":"Tester",
+            "password":"123456"
+        }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "rst": {
+                "id": 1,
+                "userName": "Tester",
+                "userEmail": "tester@163.com",
+                "loginTel": "18962188643",
+                "createDate": 1481447430000
+              },
+              "base_resp": {
+                "ret": 0,
+                "err_msg": ""
+              }
+            }
