@@ -1,9 +1,12 @@
-FORMAT: 1A
+FORMAT: v1
 HOST: http://maoanping.f3322.net:5901/api/v1/pub
 
 # devhub public API
 
 devhub is a simple API allowing consumers to view devbub and vote in them.
+
+# Group Users
+Users, user detail, login public API collections
 
 ## Users Collection [/users]
 
@@ -41,6 +44,9 @@ object containing a user.
 
 
 ## Users Basic info Collection  [/users/{id}]
+
++ Parameter
+    + id (integer) ... user id
 
 ### User basic info [GET]
 
@@ -92,6 +98,277 @@ Login user by user name and  password, it will generate a session current now.
                 "userEmail": "tester@163.com",
                 "loginTel": "18962188643",
                 "createDate": 1481447430000
+              },
+              "base_resp": {
+                "ret": 0,
+                "err_msg": ""
+              }
+            }
+            
+# Group Teams
+Teams public API collections
+
+## Teams Collections [/teams]
+
+### List teams [GET]
+List teams info, could limit return records by parement **limit** and **offset**; those two parmeters are optional.
+
+
++ Request (application/json)
+
+        {
+            "offset":0,
+            "limit":2147483647
+        }
+        
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "rst": [{
+                "id": 1,
+                "teamName": "first_team",
+                "owner": 1,
+                "createBy": 1,
+                "createDate": 1481447430000
+              }],
+              "base_resp": {
+                "ret": 0,
+                "err_msg": ""
+              }
+            }
+            
+## Team info Collections [/teams/{id}]
+
++ Parameter
+    + id (integer) ... team id
+
+    
+### Fetch one team [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "rst": {
+                "id": 1,
+                "teamName": "first_team",
+                "owner": 1,
+                "createBy": 1,
+                "createDate": 1481447430000
+              },
+              "base_resp": {
+                "ret": 0,
+                "err_msg": ""
+              }
+            }
+
+## Team members Collections [/teams/{id}/members]
+
++ Parameter
+    + id (integer) ... team id
+    
+
+### List all team members [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "rst": [{
+                "id": 1,
+                "teamId": 1,
+                "userId": 1,    
+                "position": 1,
+                "createDate": 1481447430000
+              }],
+              "base_resp": {
+                "ret": 0,
+                "err_msg": ""
+              }
+            }
+            
+## Team member info Collections [/teams/members/{mid}]
+
++ Parameter
+    + mid (integer) ... team member id
+    
+
+### Fetch one team member [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "rst": {
+                "id": 1,
+                "teamId": 1,
+                "userId": 1,    
+                "position": 1,
+                "createDate": 1481447430000
+              },
+              "base_resp": {
+                "ret": 0,
+                "err_msg": ""
+              }
+            }
+            
+
+# Group Competitions
+Competition, submissons, data file public collection
+
+## Competitions Collection [/competitions]
+
+### List competitions [GET]
+List competitions info, could limit return records by parement **limit** and **offset**; those two parmeters are optional.
+
++ Request (application/json)
+
+        {
+            "offset":0,
+            "limit":2147483647
+        }
+        
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "rst": [{
+                "id": 1,
+                "name":"First Competition",
+                "title": "The first competition for devhub",
+                "type": "Research",
+                "status": "Active",
+                "createBy":1,
+                "createDate": 1481447430000
+              }],
+              "base_resp": {
+                "ret": 0,
+                "err_msg": ""
+              }
+            }
+            
+## Competitions info Collection [/competitions/{id}]
+
++ Parameter
+    + id (integer) ... competition id
+
+
+### Fetch one competition [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "rst": {
+                "id": 1,
+                "name":"First Competition",
+                "title": "The first competition for devhub",
+                "type": "Research",
+                "status": "Active",
+                "createBy":1,
+                "createDate": 1481447430000
+              },
+              "base_resp": {
+                "ret": 0,
+                "err_msg": ""
+              }
+            }
+            
+
+## Submissons Collection [/competitions/{id}/submissons]
+
++ Parameter
+    + id (integer) ... competition id
+
+### List competition submissions [GET]
+
++ Request (application/json)
+
+        {
+            "offset":0,
+            "limit":2147483647
+        }
+        
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "rst": [{
+                "id": 1,
+                "competionId":1,
+                "teamId":1,
+                "createBy":1,
+                "createDate":1481447430000,
+                "lastUpdateDate":1481447430000
+                "score":90.1
+              }],
+              "base_resp": {
+                "ret": 0,
+                "err_msg": ""
+              }
+            }
+            
+            
+## Submissons info Collection1 [/competitions/{id}/submissons/{tid}]
+ 
+ + Parameter
+    + id (integer) ... competition id
+    + tid (integer) ... team id
+
+
+### Ftech one submission [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "rst": {
+                "id": 1,
+                "competionId":1,
+                "teamId":1,
+                "createBy":1,
+                "createDate":1481447430000,
+                "lastUpdateDate":1481447430000
+                "score":90.1
+              },
+              "base_resp": {
+                "ret": 0,
+                "err_msg": ""
+              }
+            }
+
+
+## Submissons info Collection2 [/competitions/submissons/{sid}]
+ 
+ + Parameter
+    + sid (integer) ... competition submisson id
+
+
+### Ftech one submission [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "rst": {
+                "id": 1,
+                "competionId":1,
+                "teamId":1,
+                "createBy":1,
+                "createDate":1481447430000,
+                "lastUpdateDate":1481447430000
+                "score":90.1
               },
               "base_resp": {
                 "ret": 0,
